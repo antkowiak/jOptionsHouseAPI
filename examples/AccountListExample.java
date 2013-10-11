@@ -1,13 +1,16 @@
+import java.util.List;
+
+import com.ryanantkowiak.jOptionsHouseAPI.OhAccountList;
 import com.ryanantkowiak.jOptionsHouseAPI.OhLogin;
 import com.ryanantkowiak.jOptionsHouseAPI.OhLogout;
 
 
 /**
- * This example shows how to login and logout from OptionsHouse using the API
+ * This example shows how see an account list using OptionsHouse API
  * 
  * @author Ryan Antkowiak (antkowiak@gmail.com)
  */
-public class LoginLogoutExample
+public class AccountListExample
 {
 	public static void main(String[] args)
 	{
@@ -29,22 +32,36 @@ public class LoginLogoutExample
 		}
 		else
 		{
-			// The login succeeded. Print out some data:
-			System.out.println("Login successful!");
-			System.out.println("First Name:            " + login.getFirstName());
-			System.out.println("Last Name:             " + login.getLastName());
-			System.out.println("Professional Account?: " + login.isProfessional());
-			System.out.println("Account Funded?:       " + login.isFunded());
-			
-			if (login.hasAlert())
-			{
-				System.out.println("Alert String:          " + login.getAlert());
-			}
+			// The login succeeded
 			
 			// Grab the authorization token. The authToken must be used in all
 			// subsequent communications with OptionsHouse for this session.
 			String authToken = login.getAuthToken();
-
+			
+			// Must wait 1 second (1000ms) between sending messages to OptionsHouse
+			waitOneSecond();
+			
+			// Create the accountList object (and use the authToken from the login)
+			OhAccountList accountList = new OhAccountList(authToken);
+			
+			// Execute the accountList (send the message to the OptionsHouse server)
+			accountList.execute();
+			
+			// Get the list of account IDs
+			List<String> accountIds = accountList.getAccountIdList();
+			
+			// Iterate over the account IDs, printing information about each one
+			for (String id : accountIds)
+			{
+				System.out.println("-------------------------------");
+				System.out.println("Account ID:          " + id);
+				System.out.println("Account Name:        " + accountList.getAccountName(id));
+				System.out.println("Account Description: " + accountList.getAccountDesc(id));
+				System.out.println("Is Virtual Account?: " + accountList.getIsVirtual(id));
+				System.out.println("Account Type:        " + accountList.getAccountType(id));
+				System.out.println("Year Account Opened: " + accountList.getYearAccountOpened(id));
+			}
+			
 			// Must wait 1 second (1000ms) between sending messages to OptionsHouse
 			waitOneSecond();
 			
@@ -52,7 +69,7 @@ public class LoginLogoutExample
 			OhLogout logout = new OhLogout(authToken);
 			
 			// Execute the logout (send the logout message to the OptionsHouse server)
-			logout.execute();	
+			logout.execute();
 		}
 	}
 	
