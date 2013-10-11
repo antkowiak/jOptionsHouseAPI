@@ -350,9 +350,9 @@ class OhMsgAccountCashReq extends IOhMsgReq
 			{
 				public String authToken;
 				public String account;
-				boolean portfolio;
-				boolean historical;
-				boolean fastValues;
+				public boolean portfolio;
+				public boolean historical;
+				public boolean fastValues;
 			}
 		}
 	}
