@@ -62,7 +62,10 @@ public class QuoteExample
 						" bid=" + quote.getBid(sym) +
 						" ask=" + quote.getAsk(sym) +
 						" vol=" + quote.getVolume(sym));
-			}		
+			}
+			
+			// Must wait 1 second (1000ms) between sending messages to OptionsHouse
+			waitOneSecond();
 			
 			// Create the logout object (and use the authToken from the login)
 			OhLogout logout = new OhLogout(authToken);
