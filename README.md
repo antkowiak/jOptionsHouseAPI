@@ -25,10 +25,12 @@ the "examples" subdirectory for examples on how to use the API.
   guarantees!
 
 
-#### Bugs ####
-* No known bugs at the time of release.
-* If you find bugs, please report them to Ryan Antkowiak (antkowiak@gmail.com)
-  or raise an issue in GitHub.
+#### Tips ####
+* You can turn on very verbose debugging by calling: OptionsHouseUtilities.setDebugMsgTracing(true);
+* Beware that verbose debugging will print almost EVERYTHING to the console (including your
+  login credentials you send along with the OhLogin().
+* In order to adhere to the one-second-between-messages requirement, you may want to implement
+  some kind of synchronized queue of "Oh" objects.  I may try to include this in a future release.
 
 
 #### Feedback / Encouragement ####
