@@ -78,7 +78,7 @@ public class SimpleOrderExample
 				waitOneSecond();
 				OhLogout logout = new OhLogout(authToken);
 				logout.execute();
-				System.out.println("No virtual account found.  Existing.");
+				System.out.println("No virtual account found.  Exiting.");
 				System.exit(0);
 			}
 			
