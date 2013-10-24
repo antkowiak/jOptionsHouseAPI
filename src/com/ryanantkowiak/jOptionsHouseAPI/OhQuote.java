@@ -161,6 +161,8 @@ public class OhQuote extends IOh
 				m_options.add(key);
 			}
 		}
+		
+		execute();
 	}
 
 	/**
