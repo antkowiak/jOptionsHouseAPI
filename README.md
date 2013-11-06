@@ -31,6 +31,8 @@ the "examples" subdirectory for examples on how to use the API.
   login credentials you send along with the OhLogin().
 * In order to adhere to the one-second-between-messages requirement, you may want to implement
   some kind of synchronized queue of "Oh" objects.  I may try to include this in a future release.
+* Use the OhKeepAlive class to keep a session alive.  I have discovered that sometimes OptionsHouse will
+expire a session, even if you are regularly sending other messages.
 
 
 #### Feedback / Encouragement ####
