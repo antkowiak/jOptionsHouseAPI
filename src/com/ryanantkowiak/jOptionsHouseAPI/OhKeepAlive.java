@@ -13,7 +13,11 @@ import com.google.gson.GsonBuilder;
 
 /**
  * This class will send a session KeepAlive request to OptionsHouse. A
- * "KeepAlive" will prevent a session from expiring from a period of inactivity.
+ * "KeepAlive" will prevent a session from expiring.  Please note: I have
+ * noticed that sometimes sending other (non-KeepAlive) messages to the OptionsHouse
+ * server will NOT NECESSARILY preserve your session. It is highly recommended that
+ * you send a KeepAlive every few minutes, even if your application is already
+ * sending other messages.
  * 
  * @author Ryan Antkowiak (antkowiak@gmail.com)
  */
