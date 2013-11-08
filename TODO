@@ -1,8 +1,0 @@
-* Create a class that can do more complex (e.g. multi-leg) orders
-* Create a class for previewing an order
-* Create some kind of synchronized queue that can be used to enforce
-  the "one-message-per-second" OptionsHouse requirement
-* Provide examples/samples of how to use: OhAccountPositions, OhAllOrderStatus,
-  OhKeepAlive, OhOrderHistory, OhViewSeries
-* Possibly add a class to combine the queries for OhOrderDetails and OhOrderHistory
-* Write unit tests
