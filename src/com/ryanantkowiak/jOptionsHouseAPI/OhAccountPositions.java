@@ -18,6 +18,17 @@ import com.google.gson.GsonBuilder;
  * This class will retrieve the Positions associated with an account from
  * OptionsHouse
  * 
+ * @note There is a bug in the OptionsHouse API spec whereby requesting the JSON
+ * data for the account positions will return a different data type if the account
+ * only has one position, vs if the account has more than one position.  If the account
+ * has only one position, it will return the position as one element of the type
+ * that they call "unified" in the JSON.  However, if there is more than one position,
+ * OH will return a list of elements of type "unified".  Obviously, it would be more
+ * convenient (and would follow their API spec document more accurately) if they returned
+ * a list of size 1 when the account only has one position.  Unfortunately, they did not 
+ * do this.  As a result, there are a bunch of classes, members, and functions which bear
+ * the name "WorkAround" in this file, which "works around" the OH bug.
+ * 
  * @author Ryan Antkowiak (antkowiak@gmail.com)
  */
 public class OhAccountPositions extends IOh
@@ -66,6 +77,10 @@ public class OhAccountPositions extends IOh
 
 	/** contains the response JSON message for account positions */
 	private OhMsgAccountPositionsRsp m_response;
+	
+	/** contains the response JSON message for account positions (working around the 1-position-bug) **/
+	private OhMsgAccountPositionsRspWorkAround m_responseWorkAround;
+	
 
 	/**
 	 * Constructor sets up the input values for retrieving the account positions
@@ -79,6 +94,20 @@ public class OhAccountPositions extends IOh
 	{
 		m_authToken = authToken;
 		m_accountId = accountId;
+	}
+	
+	/**
+	 * Determine if this class needs to work around a bug in the OptionsHouse API
+	 * 
+	 * @note This method works around a bug in the OptionsHouse API whereby the "AccountPositions"
+	 * request will not send a list of the "unified" type, and will instead only send one "unified"
+	 * typed object if there is exactly one position. 
+	 *
+	 * @return boolean - true if this class must work around the OH API bug
+	 */
+	private boolean isWorkAround()
+	{
+		return (m_response == null);
 	}
 
 	/*
@@ -98,9 +127,16 @@ public class OhAccountPositions extends IOh
 	 * @see com.ryanantkowiak.jOptionsHouseAPI.IOh#getResponse()
 	 */
 	@Override
-	protected OhMsgAccountPositionsRsp getResponse()
+	protected IOhMsgRsp getResponse()
 	{
-		return m_response;
+		if (isWorkAround())
+		{
+			return m_responseWorkAround;
+		}
+		else
+		{
+			return m_response;
+		}
 	}
 
 	/**
@@ -131,8 +167,20 @@ public class OhAccountPositions extends IOh
 		m_httpRequest = new OptionsHouseHttpRequest(m_request.getJsonString(),
 				m_request.getPage());
 		m_httpRequest.sendRequest();
-		m_response = OhMsgAccountPositionsRsp
+		
+		m_response = null;
+		m_responseWorkAround = null;
+		try
+		{
+			m_response = OhMsgAccountPositionsRsp
 				.build(m_httpRequest.getResponse());
+		}
+		catch (Exception e)
+		{
+			m_response = null;
+			m_responseWorkAround = OhMsgAccountPositionsRspWorkAround
+					.build(m_httpRequest.getResponse());
+		}
 
 		super.execute();
 	}
@@ -144,9 +192,19 @@ public class OhAccountPositions extends IOh
 	 */
 	public String getTimestamp()
 	{
-		if (null != getData() && null != getData().timeStamp)
+		if (isWorkAround())
 		{
-			return m_response.EZMessage.data.timeStamp;
+			if (null != getDataWorkAround() && null != getDataWorkAround().timeStamp)
+			{
+				return m_responseWorkAround.EZMessage.data.timeStamp;
+			}
+		}
+		else
+		{
+			if (null != getData() && null != getData().timeStamp)
+			{
+				return m_response.EZMessage.data.timeStamp;
+			}
 		}
 
 		return "";
@@ -159,10 +217,21 @@ public class OhAccountPositions extends IOh
 	 */
 	public int getNumPositions()
 	{
-		if (null != getUnifiedList())
+		if (isWorkAround())
 		{
-			return getUnifiedList().size();
+			if (null != getUnifiedListWorkAround())
+			{
+				return getUnifiedListWorkAround().size();
+			}
 		}
+		else
+		{
+			if (null != getUnifiedList())
+			{
+				return getUnifiedList().size();
+			}
+		}
+		
 		return 0;
 	}
 
@@ -173,41 +242,82 @@ public class OhAccountPositions extends IOh
 	 */
 	public List<OhPosition> getPositions()
 	{
-		List<OhPosition> positions = new ArrayList<OhPosition>();
-
-		for (int i = 0; i < getNumPositions(); ++i)
+		if (isWorkAround())
 		{
-			OhPosition pos = new OhPosition();
+			List<OhPosition> positions = new ArrayList<OhPosition>();
 
-			pos.m_accountId = getUnifiedList().get(i).accountId;
-			pos.m_shareCostBasis = getUnifiedList().get(i).shareCostBasis;
-			pos.m_isCustomCostBasis = getUnifiedList().get(i).isCustomCostBasis;
-			pos.m_expString = getUnifiedList().get(i).expString;
-			pos.m_stock = getUnifiedList().get(i).stock;
-			pos.m_description = getUnifiedList().get(i).description;
-			pos.m_defaultCostBasis = getUnifiedList().get(i).defaultCostBasis;
-			pos.m_isExchangeDelayed = getUnifiedList().get(i).isExchangeDelayed;
-			pos.m_underlying = getUnifiedList().get(i).underlying;
-			pos.m_spc = getUnifiedList().get(i).spc;
-			pos.m_bid = getUnifiedList().get(i).bid;
-			pos.m_securityKey = getUnifiedList().get(i).securityKey;
-			pos.m_qty = getUnifiedList().get(i).qty;
-			pos.m_dailyChange = getUnifiedList().get(i).dailyChange;
-			pos.m_multiplier = getUnifiedList().get(i).multiplier;
-			pos.m_gain = getUnifiedList().get(i).gain;
-			pos.m_mktVal = getUnifiedList().get(i).mktVal;
-			pos.m_posValChange = getUnifiedList().get(i).posValChange;
-			pos.m_price = getUnifiedList().get(i).price;
-			pos.m_strikeString = getUnifiedList().get(i).strikeString;
-			pos.m_canExercise = getUnifiedList().get(i).canExercise;
-			pos.m_costBasis = getUnifiedList().get(i).costBasis;
-			pos.m_positionNewToday = getUnifiedList().get(i).positionNewToday;
-			pos.m_ask = getUnifiedList().get(i).ask;
+			for (int i = 0; i < getNumPositions(); ++i)
+			{
+				OhPosition pos = new OhPosition();
 
-			positions.add(pos);
+				pos.m_accountId = 			getUnifiedListWorkAround().get(i).accountId;
+				pos.m_shareCostBasis = 		getUnifiedListWorkAround().get(i).shareCostBasis;
+				pos.m_isCustomCostBasis = 	getUnifiedListWorkAround().get(i).isCustomCostBasis;
+				pos.m_expString = 			getUnifiedListWorkAround().get(i).expString;
+				pos.m_stock = 				getUnifiedListWorkAround().get(i).stock;
+				pos.m_description = 		getUnifiedListWorkAround().get(i).description;
+				pos.m_defaultCostBasis = 	getUnifiedListWorkAround().get(i).defaultCostBasis;
+				pos.m_isExchangeDelayed = 	getUnifiedListWorkAround().get(i).isExchangeDelayed;
+				pos.m_underlying = 			getUnifiedListWorkAround().get(i).underlying;
+				pos.m_spc = 				getUnifiedListWorkAround().get(i).spc;
+				pos.m_bid = 				getUnifiedListWorkAround().get(i).bid;
+				pos.m_securityKey = 		getUnifiedListWorkAround().get(i).securityKey;
+				pos.m_qty = 				getUnifiedListWorkAround().get(i).qty;
+				pos.m_dailyChange = 		getUnifiedListWorkAround().get(i).dailyChange;
+				pos.m_multiplier = 			getUnifiedListWorkAround().get(i).multiplier;
+				pos.m_gain = 				getUnifiedListWorkAround().get(i).gain;
+				pos.m_mktVal = 				getUnifiedListWorkAround().get(i).mktVal;
+				pos.m_posValChange = 		getUnifiedListWorkAround().get(i).posValChange;
+				pos.m_price = 				getUnifiedListWorkAround().get(i).price;
+				pos.m_strikeString = 		getUnifiedListWorkAround().get(i).strikeString;
+				pos.m_canExercise = 		getUnifiedListWorkAround().get(i).canExercise;
+				pos.m_costBasis = 			getUnifiedListWorkAround().get(i).costBasis;
+				pos.m_positionNewToday = 	getUnifiedListWorkAround().get(i).positionNewToday;
+				pos.m_ask = 				getUnifiedListWorkAround().get(i).ask;
+
+				positions.add(pos);
+			}
+
+			return positions;
 		}
+		else
+		{
+			List<OhPosition> positions = new ArrayList<OhPosition>();
 
-		return positions;
+			for (int i = 0; i < getNumPositions(); ++i)
+			{
+				OhPosition pos = new OhPosition();
+
+				pos.m_accountId = 			getUnifiedList().get(i).accountId;
+				pos.m_shareCostBasis = 		getUnifiedList().get(i).shareCostBasis;
+				pos.m_isCustomCostBasis = 	getUnifiedList().get(i).isCustomCostBasis;
+				pos.m_expString = 			getUnifiedList().get(i).expString;
+				pos.m_stock = 				getUnifiedList().get(i).stock;
+				pos.m_description = 		getUnifiedList().get(i).description;
+				pos.m_defaultCostBasis = 	getUnifiedList().get(i).defaultCostBasis;
+				pos.m_isExchangeDelayed = 	getUnifiedList().get(i).isExchangeDelayed;
+				pos.m_underlying = 			getUnifiedList().get(i).underlying;
+				pos.m_spc = 				getUnifiedList().get(i).spc;
+				pos.m_bid = 				getUnifiedList().get(i).bid;
+				pos.m_securityKey = 		getUnifiedList().get(i).securityKey;
+				pos.m_qty = 				getUnifiedList().get(i).qty;
+				pos.m_dailyChange = 		getUnifiedList().get(i).dailyChange;
+				pos.m_multiplier = 			getUnifiedList().get(i).multiplier;
+				pos.m_gain = 				getUnifiedList().get(i).gain;
+				pos.m_mktVal = 				getUnifiedList().get(i).mktVal;
+				pos.m_posValChange = 		getUnifiedList().get(i).posValChange;
+				pos.m_price = 				getUnifiedList().get(i).price;
+				pos.m_strikeString = 		getUnifiedList().get(i).strikeString;
+				pos.m_canExercise = 		getUnifiedList().get(i).canExercise;
+				pos.m_costBasis = 			getUnifiedList().get(i).costBasis;
+				pos.m_positionNewToday = 	getUnifiedList().get(i).positionNewToday;
+				pos.m_ask = 				getUnifiedList().get(i).ask;
+
+				positions.add(pos);
+			}
+
+			return positions;
+		}
 	}
 	
 	/**
@@ -245,6 +355,22 @@ public class OhAccountPositions extends IOh
 
 		return null;
 	}
+	
+	/**
+	 * Internal helper method to get data from the response message
+	 * 
+	 * @return the data object
+	 */
+	private OhMsgAccountPositionsRspWorkAround.EZMessage_.data_ getDataWorkAround()
+	{
+		if (null != m_responseWorkAround && null != m_responseWorkAround.EZMessage
+				&& null != m_responseWorkAround.EZMessage.data)
+		{
+			return m_responseWorkAround.EZMessage.data;
+		}
+
+		return null;
+	}
 
 	/**
 	 * Internal helper method to get data from the response message
@@ -256,6 +382,33 @@ public class OhAccountPositions extends IOh
 		if (null != getData() && null != getData().unified)
 		{
 			return getData().unified;
+		}
+
+		return null;
+	}
+	
+	/**
+	 * Internal helper method to get data from the response message
+	 * 
+	 * @note This method works around a bug in the OptionsHouse API whereby the "AccountPositions"
+	 * request will not send a list of the "unified" type, and will instead only send one "unified"
+	 * typed object if there is exactly one position. 
+	 * 
+	 * @return the unified list
+	 */
+	private List<OhMsgAccountPositionsRspWorkAround.EZMessage_.data_.unified_> getUnifiedListWorkAround()
+	{
+		if (null != getDataWorkAround() && null != getDataWorkAround().unified)
+		{
+			// Create a temporary list of "unified" type
+			
+			List<OhMsgAccountPositionsRspWorkAround.EZMessage_.data_.unified_> tmpList =
+					new ArrayList<OhMsgAccountPositionsRspWorkAround.EZMessage_.data_.unified_>();
+			
+			// Add the single "unified" position to the list
+			tmpList.add(getDataWorkAround().unified);
+			
+			return tmpList;
 		}
 
 		return null;
@@ -325,6 +478,7 @@ class OhMsgAccountPositionsRsp extends IOhMsgRsp
 
 		OhMsgAccountPositionsRsp rsp = (gson.fromJson(str,
 				OhMsgAccountPositionsRsp.class));
+			
 		rsp.m_raw = str;
 		return rsp;
 	}
@@ -359,7 +513,7 @@ class OhMsgAccountPositionsRsp extends IOhMsgRsp
 				public double dailyChange;
 				public double multiplier;
 				public double gain;
-				List<String> sortHint;
+				public List<String> sortHint;
 				public double mktVal;
 				public double posValChange;
 				public double price;
@@ -373,3 +527,81 @@ class OhMsgAccountPositionsRsp extends IOhMsgRsp
 	}
 
 }
+
+/**
+ * Internal data structure to represent JSON communication with the OptionsHouse
+ * API. Specifies the response for account positions data.
+ * 
+ * @note This class works around a bug in the OptionsHouse API whereby the "AccountPositions"
+ * request will not send a list of the "unified" type, and will instead only send one "unified"
+ * typed object if there is exactly one position. 
+ * 
+ * @author Ryan Antkowiak (antkowiak@gmail.com)
+ */
+class OhMsgAccountPositionsRspWorkAround extends IOhMsgRsp
+{
+	@Override
+	public EZMessageBaseRsp getEZ()
+	{
+		return EZMessage;
+	}
+
+	public static OhMsgAccountPositionsRspWorkAround build(String str)
+	{
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(ErrorMap.class,
+				new ErrorMapDeserializer());
+		Gson gson = gsonBuilder.create();
+
+		OhMsgAccountPositionsRspWorkAround rsp = (gson.fromJson(str,
+				OhMsgAccountPositionsRspWorkAround.class));
+			
+		rsp.m_raw = str;
+		return rsp;
+	}
+
+	public EZMessage_ EZMessage;
+
+	public class EZMessage_ extends EZMessageBaseRsp
+	{
+		public data_ data;
+
+		public class data_
+		{
+			public String timeStamp;
+
+			public class unified_
+			{
+				public String accountId;
+				public double shareCostBasis;
+				public boolean isCustomCostBasis;
+				public String expString;
+				public double stock;
+				public String description;
+				public double defaultCostBasis;
+				public boolean isExchangeDelayed;
+				public String underlying;
+				public double spc;
+				public double bid;
+				public String securityKey;
+				public long qty;
+				public double dailyChange;
+				public double multiplier;
+				public double gain;
+				public List<String> sortHint;
+				public double mktVal;
+				public double posValChange;
+				public double price;
+				public String strikeString;
+				public boolean canExercise;
+				public double costBasis;
+				public boolean positionNewToday;
+				public double ask;
+			}
+			
+			public unified_ unified;
+		}
+	}
+
+}
+
