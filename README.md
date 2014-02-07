@@ -43,6 +43,12 @@ expire a session, even if you are regularly sending other messages.
   website will earn a small referral bonus for me.
 
 
+#### Version 1.0.1 ####
+* Fixes #11 - Works around a bug in the OptionsHouse API for getting
+  account positions when the account has exactly one position.
+* Small internal changes of comments and visibility of internal class members.
+
+
 #### Version 1.0.0 ####
 * Initial release
 
