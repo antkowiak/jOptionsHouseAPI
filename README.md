@@ -43,6 +43,10 @@ expire a session, even if you are regularly sending other messages.
   website will earn a small referral bonus for me.
 
 
+### Version 1.0.2 ###
+* Fixes #12 - OhAccountList Bug - Data not being property retrieved for first
+  account in the list
+
 #### Version 1.0.1 ####
 * Fixes #11 - Works around a bug in the OptionsHouse API for getting
   account positions when the account has exactly one position.
