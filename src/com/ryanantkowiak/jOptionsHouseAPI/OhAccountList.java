@@ -177,6 +177,45 @@ public class OhAccountList extends IOh
 
 		return "";
 	}
+	
+	
+	/**
+	 * Returns the account number associated with a given accountId
+	 * 
+	 * @note The actual field is called "account".  This value
+	 * 			will be something like: "4ZE#####".  It may seem strange
+	 * 			to have both an "account id" and an "account name" -- and
+	 * 			I believe that this is due to the fact that OptionsHouse
+	 * 			changed all the true account identifiers when they moved
+	 * 			from Penson to Apex for clearing transactions.  It appears
+	 * 			that both the old account IDs from Penson (with all numbers)
+	 * 			and the new account IDs from Apex (with "4ZE#####") are included
+	 * 			in the JSON data.  This function returns the Apex clearing
+	 * 			"Account Number."
+	 * 
+	 * @param accountId
+	 *            the account id for which a number will be returned
+	 *            
+	 * @return the account name associated with accountId
+	 * 
+	 * @author Ryan Antkowiak (antkowiak@gmail.com), Luke Davis (newanswertech@gmail.com)
+	 */
+	public String getAccountNumberForAccountId(String accountId)
+	{
+		if (null != getAccountList())
+		{
+			for (int i = 0; i < getAccountList().size(); ++i)
+			{
+				if (getAccountList().get(i).accountId.equals(accountId))
+				{
+					return (getAccountList().get(i).account);
+				}
+			}
+		}
+
+		return "";
+	}
+	
 
 	/**
 	 * Returns the number of accounts associated with this session
