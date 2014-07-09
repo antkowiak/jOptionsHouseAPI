@@ -724,7 +724,7 @@ public class OhAccountList extends IOh
 		{
 			int index = getIndexOfAccountId(accountId);
 			
-			if (index > 0 && index < getData().account.size())
+			if (index >= 0 && index < getData().account.size())
 			{
 				return getData().account.get(index);
 			}
