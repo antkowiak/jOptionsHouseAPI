@@ -43,6 +43,12 @@ expire a session, even if you are regularly sending other messages.
   website will earn a small referral bonus for me.
 
 
+#### Version 1.0.3 ####
+* Added getAccountNumberForAccountId() to OhAccountList in order to provide
+  access to account numbers.  (When OptionsHouse changed clearing firms from
+  Penson to Apex, they re-numbered the accounts.  This method returns the
+  account number that was newly given when switched over to Apex, I believe.)
+
 #### Version 1.0.2 ####
 * Fixes #12 - OhAccountList Bug - Data not being property retrieved for first
   account in the list
