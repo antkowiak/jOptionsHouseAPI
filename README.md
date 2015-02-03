@@ -1,6 +1,11 @@
 jOptionsHouseAPI
 ================
 
+IMPORTANT!!! - OptionsHouse recently merged with TradeMonster.  OH informed me that the
+old Options House API would be deprecated!  This code may no longer be relevant and
+may not work anymore.  I plan on developing a new Java library soon that will work
+with the new TradeMonster API.
+
 Java Library for using the OptionsHouse trading API.  This library contains some convenient
 classes in Java that allow you to access the OptionsHouse API trading platform from
 within a Java application, using only a few simple lines of code.  See the files in
