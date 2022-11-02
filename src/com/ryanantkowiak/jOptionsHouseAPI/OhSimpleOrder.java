@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -18,7 +18,7 @@ import com.google.gson.GsonBuilder;
 /**
  * This class will create a simple one-legged order on OptionsHouse
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhSimpleOrder extends IOh
 {
@@ -216,7 +216,7 @@ public class OhSimpleOrder extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for creating a simple one-legged order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgCreateSimpleOrderReq extends IOhMsgReq
 {
@@ -370,7 +370,7 @@ class OhMsgCreateSimpleOrderReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for creating a simple one-legged order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgCreateSimpleOrderRsp extends IOhMsgRsp
 {

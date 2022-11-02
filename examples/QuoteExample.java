@@ -9,7 +9,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhQuote;
 /**
  * This example shows how to obtain stock quotes using OptionsHouse API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class QuoteExample
 {

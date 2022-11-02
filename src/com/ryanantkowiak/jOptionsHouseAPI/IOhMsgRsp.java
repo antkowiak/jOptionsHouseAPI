@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -22,7 +22,7 @@ import com.google.gson.JsonParseException;
  * Base class for other classes that define a JSON representation of
  * OptionsHouse API responses.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 abstract class IOhMsgRsp
 {
@@ -57,7 +57,7 @@ abstract class IOhMsgRsp
  * Contains a map of error strings that can occur in an OptionsHouse JSON
  * message response.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class ErrorMap
 {
@@ -93,7 +93,7 @@ class ErrorMap
  * This class deserializes error messages from OptionsHouse into an instance of
  * the ErrorMap class.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class ErrorMapDeserializer implements JsonDeserializer<ErrorMap>
 {
@@ -114,7 +114,7 @@ class ErrorMapDeserializer implements JsonDeserializer<ErrorMap>
 /**
  * Base class for EZMessage response JSON structures
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class EZMessageBaseRsp
 {

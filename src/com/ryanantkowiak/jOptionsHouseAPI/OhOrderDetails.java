@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -24,7 +24,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhMsgOrderDetailsRsp.EZMessage_.data_.
  * the shares of the underlying stock. The other leg is the short position on
  * the call option that was written/sold.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhOrderDetails extends IOh
 {
@@ -573,7 +573,7 @@ public class OhOrderDetails extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for the details of an order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgOrderDetailsReq extends IOhMsgReq
 {
@@ -625,7 +625,7 @@ class OhMsgOrderDetailsReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for the details of an order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgOrderDetailsRsp extends IOhMsgRsp
 {

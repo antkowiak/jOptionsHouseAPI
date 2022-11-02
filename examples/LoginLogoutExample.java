@@ -5,7 +5,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhLogout;
 /**
  * This example shows how to login and logout from OptionsHouse using the API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class LoginLogoutExample
 {

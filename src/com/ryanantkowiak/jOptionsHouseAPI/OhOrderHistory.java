@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -20,7 +20,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhMsgOrderHistoryRsp.EZMessage_.data_.
  * OptionsHouse. An order can under-go multiple events. (Such as several
  * partial-fills.)
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhOrderHistory extends IOh
 {
@@ -28,7 +28,7 @@ public class OhOrderHistory extends IOh
 	 * This class contains all the data associated with one history event of an
 	 * order.
 	 * 
-	 * @author Ryan Antkowiak (antkowiak@gmail.com)
+	 * @author Ryan Antkowiak 
 	 */
 	public class OhOrderHistoryEvent
 	{
@@ -317,7 +317,7 @@ public class OhOrderHistory extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for the history of an order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgOrderHistoryReq extends IOhMsgReq
 {
@@ -369,7 +369,7 @@ class OhMsgOrderHistoryReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for the history of an order.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgOrderHistoryRsp extends IOhMsgRsp
 {

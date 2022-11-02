@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -21,7 +21,7 @@ import java.util.Map;
  * Base class for other classes that wrap functionality for communication with
  * OptionsHouse API.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public abstract class IOh
 {

@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -19,7 +19,7 @@ import com.google.gson.GsonBuilder;
  * you send a KeepAlive every few minutes, even if your application is already
  * sending other messages.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhKeepAlive extends IOh
 {
@@ -109,7 +109,7 @@ public class OhKeepAlive extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for KeepAlive.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAuthKeepAliveReq extends IOhMsgReq
 {
@@ -148,7 +148,7 @@ class OhMsgAuthKeepAliveReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for KeepAlive.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAuthKeepAliveRsp extends IOhMsgRsp
 {

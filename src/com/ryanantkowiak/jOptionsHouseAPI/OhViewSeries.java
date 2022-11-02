@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -21,7 +21,7 @@ import com.google.gson.GsonBuilder;
  * Depending on the provided parameters to this class, quarterly options and/or
  * weekly options may be included in the results.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhViewSeries extends IOh
 {
@@ -29,7 +29,7 @@ public class OhViewSeries extends IOh
 	 * This class contains an expiration date, and the list of options contracts
 	 * that all expire on that date.
 	 * 
-	 * @author Ryan Antkowiak (antkowiak@gmail.com)
+	 * @author Ryan Antkowiak 
 	 */
 	public class OhSeriesExpiration
 	{
@@ -267,7 +267,7 @@ public class OhViewSeries extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for retrieving a series of option contract data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgViewSeriesReq extends IOhMsgReq
 {
@@ -311,7 +311,7 @@ class OhMsgViewSeriesReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for receiving a series of option contract data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgViewSeriesRsp extends IOhMsgRsp
 {

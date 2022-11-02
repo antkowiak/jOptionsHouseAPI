@@ -14,7 +14,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.TimeInForce;
 /**
  * This example shows how to create and then cancel a simple order using OptionsHouse API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class SimpleOrderExample
 {

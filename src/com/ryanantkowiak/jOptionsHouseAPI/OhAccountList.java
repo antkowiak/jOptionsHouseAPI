@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -17,7 +17,7 @@ import com.google.gson.GsonBuilder;
 /**
  * This class will retrieve the list of accounts from OptionsHouse
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhAccountList extends IOh
 {
@@ -198,7 +198,7 @@ public class OhAccountList extends IOh
 	 *            
 	 * @return the account name associated with accountId
 	 * 
-	 * @author Ryan Antkowiak (antkowiak@gmail.com), Luke Davis (newanswertech@gmail.com)
+	 * @author Ryan Antkowiak , Luke Davis (newanswertech@gmail.com)
 	 */
 	public String getAccountNumberForAccountId(String accountId)
 	{
@@ -817,7 +817,7 @@ public class OhAccountList extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for account info data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountInfoReq extends IOhMsgReq
 {
@@ -854,7 +854,7 @@ class OhMsgAccountInfoReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for account info data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountInfoRsp extends IOhMsgRsp
 {

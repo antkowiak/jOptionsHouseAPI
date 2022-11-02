@@ -8,7 +8,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhLogout;
 /**
  * This example shows how to see an account list using OptionsHouse API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class AccountListExample
 {

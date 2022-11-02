@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -17,14 +17,14 @@ import com.google.gson.GsonBuilder;
 /**
  * This class will retrieve the Account Activity from OptionsHouse
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhAccountActivity extends IOh
 {
 	/**
 	 * Defines one Account Activity event from an OptionsHouse account
 	 * 
-	 * @author Ryan Antkowiak (antkowiak@gmail.com)
+	 * @author Ryan Antkowiak 
 	 */
 	public class OhAccountActivityEvent
 	{
@@ -262,7 +262,7 @@ public class OhAccountActivity extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for account activity data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountActivityReq extends IOhMsgReq
 {
@@ -301,7 +301,7 @@ class OhMsgAccountActivityReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for account activity data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountActivityRsp extends IOhMsgRsp
 {

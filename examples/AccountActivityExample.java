@@ -10,7 +10,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhLogout;
 /**
  * This example shows how see account activity using OptionsHouse API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class AccountActivityExample
 {

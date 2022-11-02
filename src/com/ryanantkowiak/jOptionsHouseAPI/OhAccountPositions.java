@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2013 Ryan Antkowiak (antkowiak@gmail.com).
+ * Copyright (c) 2013 Ryan Antkowiak .
  * All rights reserved.
  * It is provided AS-IS, WITHOUT ANY WARRANTY either expressed or implied.
  * You may study, use, and modify it for any non-commercial purpose.
  * You may distribute it non-commercially as long as you retain this notice.
- * For a commercial use license, contact antkowiak@gmail.com.
+ * For a commercial use license, contact .
  */
 package com.ryanantkowiak.jOptionsHouseAPI;
 
@@ -29,14 +29,14 @@ import com.google.gson.GsonBuilder;
  * do this.  As a result, there are a bunch of classes, members, and functions which bear
  * the name "WorkAround" in this file, which "works around" the OH bug.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class OhAccountPositions extends IOh
 {
 	/**
 	 * Defines one Position of an OptionsHouse account
 	 * 
-	 * @author Ryan Antkowiak (antkowiak@gmail.com)
+	 * @author Ryan Antkowiak 
 	 */
 	public class OhPosition
 	{
@@ -420,7 +420,7 @@ public class OhAccountPositions extends IOh
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the request for account positions data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountPositionsReq extends IOhMsgReq
 {
@@ -459,7 +459,7 @@ class OhMsgAccountPositionsReq extends IOhMsgReq
  * Internal data structure to represent JSON communication with the OptionsHouse
  * API. Specifies the response for account positions data.
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountPositionsRsp extends IOhMsgRsp
 {
@@ -536,7 +536,7 @@ class OhMsgAccountPositionsRsp extends IOhMsgRsp
  * request will not send a list of the "unified" type, and will instead only send one "unified"
  * typed object if there is exactly one position. 
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 class OhMsgAccountPositionsRspWorkAround extends IOhMsgRsp
 {

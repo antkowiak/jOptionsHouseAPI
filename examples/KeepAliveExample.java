@@ -9,7 +9,7 @@ import com.ryanantkowiak.jOptionsHouseAPI.OhLogout;
 /**
  * This example shows how to send a KeepAlive message using OptionsHouse API
  * 
- * @author Ryan Antkowiak (antkowiak@gmail.com)
+ * @author Ryan Antkowiak 
  */
 public class KeepAliveExample
 {
